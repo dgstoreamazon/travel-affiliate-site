@@ -1,42 +1,142 @@
 *{box-sizing:border-box}
-:root{--bg:#ffffff;--ink:#1f2937;--muted:#6b7280;--brand:#0ea5e9;--brand2:#f97316;--card:#f8fafc}
-html,body{margin:0;padding:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-.container{width:min(1100px,92%);margin-inline:auto}
-.site-header{padding:64px 0;background:linear-gradient(135deg,#e0f2fe, #fff)}
-.site-header h1{font-size:clamp(28px,4.5vw,46px);margin:0 0 8px}
-.pill{font-size:.6em;background:#111;color:#fff;padding:.25em .6em;border-radius:999px;margin-left:.4em}
-.subtitle{color:var(--muted);margin-top:0}
-.cta{display:inline-block;margin-top:16px;background:var(--brand);color:#fff;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700}
-.disclosure{font-size:.9rem;color:#334155;margin-top:12px;max-width:60ch}
+:root{
+  --bg:#ffffff;
+  --ink:#1f2937;
+  --muted:#6b7280;
+  --brand:#0ea5e9;
+  --brand2:#f97316;
+  --card:#f8fafc
+}
+html,body{
+  margin:0;
+  padding:0;
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg)
+}
+.container{
+  width:min(1100px,92%);
+  margin-inline:auto
+}
+.site-header{
+  padding:64px 0;
+  background:linear-gradient(135deg,#e0f2fe,#fff)
+}
+.site-header h1{
+  font-size:clamp(28px,4.5vw,46px);
+  margin:0 0 8px
+}
+.pill{
+  font-size:.6em;
+  background:#111;
+  color:#fff;
+  padding:.25em .6em;
+  border-radius:999px;
+  margin-left:.4em
+}
+.subtitle{
+  color:var(--muted);
+  margin-top:0
+}
+.cta{
+  display:inline-block;
+  margin-top:16px;
+  background:var(--brand);
+  color:#fff;
+  padding:12px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700
+}
+.disclosure{
+  font-size:.9rem;
+  color:#334155;
+  margin-top:12px;
+  max-width:60ch
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:40px 0}
-.card{background:var(--card);border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-.card img{width:100%;height:200px;object-fit:cover}
-.card-body{padding:16px;display:flex;flex-direction:column;gap:10px}
-.card h2{font-size:1.1rem;margin:0}
-.card p{margin:0;color:var(--muted)}
-.bullets{margin:0;padding-left:18px;color:#374151}
-.btn{display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:700;margin-top:6px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin:40px 0;
+  align-items:stretch; /* ensure cards align */
+}
+.card{
+  background:var(--card);
+  border:1px solid #e5e7eb;
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column
+}
+
+/* ✅ FIXED: show full product images */
+.card img{
+  display:block;
+  width:100%;
+  height:auto;              /* keep natural ratio */
+  max-height:360px;         /* prevent very tall images */
+  object-fit:contain;       /* show full product */
+  object-position:center;
+  background:#fff;          /* fills behind if letterboxed */
+  border-bottom:1px solid #e5e7eb; /* optional divider */
+}
+
+.card-body{
+  flex:1;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px
+}
+.card h2{
+  font-size:1.1rem;
+  margin:0
+}
+.card p{
+  margin:0;
+  color:var(--muted)
+}
+.bullets{
+  margin:0;
+  padding-left:18px;
+  color:#374151
+}
+.btn{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  color:#fff;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:700;
+  margin-top:auto;  /* ✅ push button to bottom */
+}
 
 .faq{margin:40px 0}
 .faq h3{margin-bottom:10px}
-.faq details{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-bottom:8px}
-
-.site-footer{background:#0b1220;color:#e5e7eb;padding:28px 0;margin-top:40px}
-.site-footer nav a{color:#93c5fd;text-decoration:none;margin-right:12px}
-
-
-/* Before: fixed height images */
-.card img {
-  width: 100%;
-  height: 200px;      /* 🔴 This forces all images to crop */
-  object-fit: cover;  /* Crops instead of showing full image */
+.faq details{
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:8px
 }
 
-/* After: auto height images */
-.card img {
-  width: 100%;
-  height: auto;       /* ✅ Let image keep natural proportions */
-  object-fit: contain;/* ✅ Show full image inside */
-  max-height: 350px;  /* Optional: limit very tall images */
+.site-footer{
+  background:#0b1220;
+  color:#e5e7eb;
+  padding:28px 0;
+  margin-top:40px
+}
+.site-footer nav a{
+  color:#93c5fd;
+  text-decoration:none;
+  margin-right:12px
+}
+
+/* Optional: give desktop images a bit more height */
+@media (min-width:800px){
+  .card img{ max-height:420px }
 }
